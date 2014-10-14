@@ -1,0 +1,7 @@
+*.pyc
+.idea
+flask_config/local.py
+logs/*
+uwsgi.ini
+uwsgi.sock
+fabfile.py

@@ -1,0 +1,98 @@
+<div class="dash_unhandled hosts dash">
+    <h2>Unhandled Hosts down</h2>
+    <div class="dash_wrapper">
+        <table class="dash_table">
+        <tr class="dash_table_head">
+            <th>Hostname</th>
+            <th>Alias</th>
+        </tr>
+        {% for host in hosts_down %}
+            <tr class="critical"><td>{{ host[0] }}</td><td>{{ host[1] }}</td></tr>
+        {% else %}
+            <tr class="ok"><td>All problem hosts has been acknowledged.</td></tr>
+        {% endfor %}
+
+
+        </table>
+    </div>
+</div>
+<div class="dash_tactical_overview tactical_overview hosts dash">
+    <h2>Tactical overview (hostgroup: {{ selected_hostgroup_id }})</h2>
+    <div class="dash_wrapper">
+        <table class="dash_table">
+            <tr class="dash_table_head">
+                <th>Type</th>
+                <th>Totals</th>
+                <th>Percentage %</th>
+            </tr>
+ <tr class="ok total_hosts_up">
+                <td>Hosts up</td>
+                <td>{{ hosts_up_count }}/{{ hosts_total_count }}</td>
+                <td>{{ hosts_up_pct }}</td>
+            </tr>
+            <tr class="critical total_hosts_down">
+                <td>Hosts down</td>
+                <td>{{ hosts_down_count }}/{{ hosts_total_count }}</td>
+                <td>{{ hosts_down_pct }}</td>
+            </tr>
+            <tr class="ok total_services_up">
+                <td>Services up</td>
+                <td>{{ services_up_count }}/{{ services_total_count }}</td>
+                <td>{{ services_up_pct }}</td>
+            </tr>
+            <tr class="critical total_services_down">
+                <td>Services down</td>
+                <td>{{ services_down_count }}/{{ services_total_count }}</td>
+                <td>{{ services_down_pct }}</td>
+            </tr>
+            <tr class="warning total_services_warning">
+                <td>Services warning</td>
+                <td>{{ services_warning_count }}/{{ services_total_count }}</td>
+                <td>{{ services_warning_pct }}</td>
+            </tr>
+            <tr class="unknown total_services_unknown">
+                <td>Services unknown</td>
+                <td>{{ services_unknown_count }}/{{ services_total_count }}</td>
+                <td>{{ services_unknown_pct }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="dash_unhandled_service_problems hosts dash">
+    <h2>Unhandled service problems</h2>
+    <div class="dash_wrapper">
+        <table class="dash_table">
+            <tr class="dash_table_head">
+                <th>
+                    Host
+                </th>
+                <th>
+                    Service
+                </th>
+                <th>
+                    Output
+                </th>
+                <th>
+                    Last statechange
+                </th>
+                <th>
+                    Last check
+                </th>
+            </tr>
+
+            {% for service in services %}
+            <tr class="{% if service.2 == 1 %}warning{% elif service.2 == 2 %}critical{% elif service.2 == 3 %}unknown{% endif %}">
+                <td>{{ service.0}}</td>
+                <td>{{ service.1}}</td>
+                <td>{{ service.3}}</td>
+                <td class="date date_statechange">{{ service.4 }}</td>
+                <td class="date date_lastcheck">{{ service.5 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<br />
+<br />
+

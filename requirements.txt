@@ -1,0 +1,8 @@
+Flask
+Flask-Cors
+Flask-SQLAlchemy
+Flask-Migrate
+psycopg2
+Jinja2
+uwsgi
+fabric
