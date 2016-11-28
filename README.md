@@ -3,6 +3,11 @@ Icinga Dashboard for Flask using PostgreSQL
 
 Minimal lightweight icinga Dashboard
 
+#prepare system
+```
+apt-get install libpq-dev libzbar-dev python-dev python3-dev libssl-dev
+```
+
 *create and edit flask_config/local.py*
 
 ```
